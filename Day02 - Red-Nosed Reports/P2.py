@@ -1,67 +1,32 @@
-safes = 0
-levels = []
-with open('mininput.txt', 'r', encoding="utf-8") as f:
-    data = f.readlines()
-    for line in data:
-        levels.append(line.strip().split())
-        levels = [[int(j) for j in i] for i in levels]
-for level in levels:
-    safe = True
-    desc = False
-    asc = False
+def is_safe(level):
+    desc, asc = False, False
     for i in range(len(level) - 1):
-        if level[i] == level[i + 1]:
-            safe = False
-            break
+        if level[i] == level[i + 1] or abs(level[i] - level[i + 1]) > 3:
+            return False
         if level[i] > level[i + 1]:
+            if asc:
+                return False
             desc = True
-        elif desc:
-            safe = False
-            break
-        if level[i] < level[i + 1]:
+        elif level[i] < level[i + 1]:
+            if desc:
+                return False
             asc = True
-        elif asc:
-            safe = False
-            break
-        if level[i] > level[i + 1] + 3:
-            safe = False
-            break
-        if level[i] < level[i + 1] - 3:
-            safe = False
-            break
-    if safe:
+    return True
+
+safes = 0
+with open('input.txt', 'r', encoding="utf-8") as f:
+    data = f.readlines()
+    levels = [[int(i) for i in line.strip().split()] for line in data]
+
+for level in levels:
+    if is_safe(level):
         safes += 1
-        print(level)
-        print("Safe without a change")
         continue
     for i in range(len(level)):
         temp = level.copy()
         temp.pop(i)
-        print("changing ", level, " to ", temp)
-        safe = True
-        desc = False
-        asc = False
-        for i in range(len(temp) - 1):
-            if temp[i] == temp[i + 1]:
-                safe = False
-            if temp[i] > temp[i + 1]:
-                desc = True
-            elif desc:
-                safe = False
-            if temp[i] < temp[i + 1]:
-                asc = True
-            elif asc:
-                safe = False
-            if temp[i] > temp[i + 1] + 3:
-                safe = False
-            if temp[i] < temp[i + 1] - 3:
-                safe = False
-        if safe:
+        if is_safe(temp):
             safes += 1
-            print(level)
-            print("Safe with a change -> ", temp)
             break
-    if not safe:
-        print(level)
-        print("Not safe")
+
 print(safes)
