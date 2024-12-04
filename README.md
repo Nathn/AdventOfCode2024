@@ -1,11 +1,11 @@
-Thes are my scripts for each day of the **[2024 edition of Advent of Code](https://adventofcode.com/2024/)**.
+These are my scripts for each day of the **[2024 edition of Advent of Code](https://adventofcode.com/2024/)**.
 
 The algorithms are first designed in pseudocode and then implemented in __Python__.
 
-Each day contains:
-- one or multiple small input files called `mininput.txt`,
-- one big input file called `input.txt` (used by default),
-- two Python scripts `P1.py` & `P2.py`, using the input file to solve today's problems.
+Each day's folder contains:
+- One or more small input files called `mininput.txt`
+- A main input file called `input.txt` (used by default)
+- Two Python scripts, `P1.py` and `P2.py`, which use the input file to solve the day's problems
 
 > [!WARNING]
 > The code present in this repository is **not** meant to be *documented*, *optimized* or, to put it simply, ***good***.
