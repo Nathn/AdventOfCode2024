@@ -32,8 +32,8 @@ for key in keys:
 for lock in locks_num:
     for key in keys_num:
         ok = True
-        for i in range(len(key)):
-            if (lock[i] + key[i]) > len(lock):
+        for i, key_n in enumerate(key):
+            if (lock[i] + key_n) > len(lock):
                 ok = False
                 break
         total += ok
